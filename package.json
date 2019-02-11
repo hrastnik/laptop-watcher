@@ -1,0 +1,17 @@
+{
+  "name": "laptop-watcher",
+  "version": "1.0.0",
+  "description": "Crawl laptop websites and notify if any laptops meet value/price criteria",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mateo Hrastnik",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^0.18.0",
+    "cheerio": "^1.0.0-rc.2",
+    "lodash": "^4.17.11",
+    "node-notifier": "^5.4.0"
+  }
+}
