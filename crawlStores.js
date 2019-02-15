@@ -1,20 +1,21 @@
-const axios = require("axios");
 const _ = require("lodash");
 
 async function crawlStores(storeInfos) {
   const responses = await Promise.all(
     storeInfos.map(async crawlInfo => {
-      const { requestOptions, transformResponse } = crawlInfo;
+      const { getProducts, storeName } = crawlInfo;
 
-      console.log(`Now crawling ${requestOptions.url}`);
-      const response = await axios(requestOptions).then(res => res.data);
-      console.log(`Success crawling ${requestOptions.url}`);
-
-      return transformResponse(response);
+      console.log(`Getting prodcuts from ${storeName}`);
+      const products = await getProducts();
+      console.log(`Success getting products from ${storeName}`);
+      return products;
     })
   );
 
-  return _.flatten(responses);
+  return _.flatten(responses).map(product => ({
+    ...product,
+    timestamp: new Date().toString()
+  }));
 }
 
 exports.crawlStores = crawlStores;
